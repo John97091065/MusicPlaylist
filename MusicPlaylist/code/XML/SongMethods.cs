@@ -5,10 +5,10 @@ namespace MusicPlaylist.Code.XML
 {
     public class SongMethods
     {
+        private DataSet ds = new DataSet("playlist");
+
         public DataSet GetAllSongs(string file)
         {
-            DataSet ds = new DataSet("playlist");
-
             DataTable dtSongs = new DataTable("song");
 
             DataColumn dcId = new DataColumn("id");
@@ -30,6 +30,16 @@ namespace MusicPlaylist.Code.XML
             ds.ReadXml(Environment.CurrentDirectory + file);
 
             return ds;
+        }
+
+        public void DeleteSong(string id, string file)
+        {
+            DataRow[] drSongs = ds.Tables["song"].Select("id = '" + id + "'");
+            if (drSongs != null && drSongs.Length > 0)
+            {
+                drSongs[0].Delete();
+                ds.WriteXml (Environment.CurrentDirectory + file);
+            }
         }
     }
 }
