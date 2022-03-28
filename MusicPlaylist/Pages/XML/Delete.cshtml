@@ -1,0 +1,23 @@
+﻿@page
+@model MusicPlaylist.Pages.XML.DeleteModel
+@using System.Data
+@using Code.XML
+@{
+    ViewData["Title"] = "Verwijder een muzieknummber";
+
+    //XML
+    SongMethods xmlsongMethods = new SongMethods();
+    string xmlFile = @"\Data\Playlist.xml";
+    DataSet xmlDataSet = xmlsongMethods.GetAllSongs(xmlFile);
+
+    if (HttpMethods.IsPost(Request.Method))
+    {
+        if (Request.Form["inputOptie"] == "ja")
+        {
+            string id = Request.Query["id"];
+            xmlsongMethods.DeleteSong(id, xmlFile);
+        }
+
+        Response.Redirect("/XML/Index");
+    }
+}
