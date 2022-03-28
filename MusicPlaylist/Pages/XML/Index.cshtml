@@ -1,0 +1,44 @@
+﻿@page
+@model MusicPlaylist.Pages.XML.IndexModel
+@using System.Data
+@using Code.XML
+@{            
+    ViewData["Title"] = "XML";
+
+    // XML
+    SongMethods xmlSongMethods = new SongMethods();  
+    string xmlFile = @"\Data\Playlist.xml";
+    DataSet xmlDataSet = xmlSongMethods.GetAllSongs(xmlFile);
+}
+
+<div class="text-center">
+    <h1 class="display-4">XML</h1>
+    <table class="table">
+        <thread>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Artist</th>
+                <th scope="col">Title</th>
+                <th scope="col">Year</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Time</th>
+            </tr>
+        </thread>
+        <tbody>
+            @foreach (DataRow drSong in xmlDataSet.Tables["song"].Rows)
+            {
+                <tr>
+                    <th scope="row">@drSong["id"]</th>
+                    <td>@drSong["artist"]</td>
+                    <td>@drSong["title"]</td>
+                    <td>@drSong["year"]</td>
+                    <td>@drSong["genre"]</td>
+                    <td>@drSong["time"]</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+   <br />
+   <br />
+   <a href="/Xml/Create">Een nieuwe song toevoegen.</a>
+</div>

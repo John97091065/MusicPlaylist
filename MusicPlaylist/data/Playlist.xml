@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<plylist>
+	<song>
+		<id>1</id>
+		<artist>Twenty One Pilots</artist>
+		<title>Stressed Out</title>
+		<year>2016</year>
+		<genre>Rap-rock</genre>
+		<time>3:22</time>
+	</song>
+	<song>
+		<id>2</id>
+		<artist>Twenty One Pilots</artist>
+		<title>Heathens</title>
+		<year>2016</year>
+		<genre>Rap-rock</genre>
+		<time>3:15</time>
+	</song>
+</plylist>
