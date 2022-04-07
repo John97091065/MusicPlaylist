@@ -41,5 +41,15 @@ namespace MusicPlaylist.Code.XML
                 ds.WriteXml (Environment.CurrentDirectory + file);
             }
         }
+
+        public void ChangeSong(string id, string file)
+        {
+            DataRow[] drSongs = ds.Tables["song"].Select("id = '" + id + "'");
+            if (drSongs != null && drSongs.Length > 0)
+            {
+                drSongs[0].AcceptChanges();
+                ds.WriteXml (Environment.CurrentDirectory + file);
+            }
+        }
     }
 }

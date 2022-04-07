@@ -1,0 +1,22 @@
+﻿@page
+@model MusicPlaylist.Pages.XML.WijzigenModel
+@using System.Data
+@using Code.XML
+@using Microsoft.AspNetCore.Http
+@{
+    ViewData["Title"] = "Verander een muzieknummer";
+
+    //XML
+    SongMethods xmlSongMethods = new SongMethods();  
+    string xmlFile = @"\Data\Playlist.xml";
+    DataSet xmlDataSet = xmlSongMethods.GetAllSongs(xmlFile);
+
+    if(HttpMethods.IsPost(Request.Method))
+    {
+        if (Request.Form["inputOptie"] == "ja")
+        {
+            string id = Request.Query["id"];
+            xmlSongMethods.ChangeSong(id, xmlFile);
+        }
+    }
+}
