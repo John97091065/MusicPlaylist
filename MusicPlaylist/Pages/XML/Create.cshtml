@@ -1,0 +1,45 @@
+﻿@page
+@model MusicPlaylist.Pages.XML.CreateModel
+@using System.Data
+@using Code.XML
+@using Microsoft.AspNetCore.Http
+@{
+    ViewData["Title"] = "Voeg een nieuw muzieknummer toe";
+
+    //XML
+    SongMethods xmlSongMethods = new SongMethods();
+    String xmlFile = @"\Data\Playlist.xml";
+    DataSet xmlDataSet = xmlSongMethods.GetAllSongs(xmlFile);
+
+    if (HttpMethods.IsPost(Request.Method))
+    {
+        DataRow drSong = xmlSongMethods.GetEmptyDataRow();
+
+        drSong[0] = Request.Form["id"];
+        drSong[1] = Request.Form["artist"];
+        drSong[2] = Request.Form["title"];
+        drSong[3] = Request.Form["year"];
+        drSong[4] = Request.Form["genre"];
+        drSong[5] = Request.Form["time"];
+
+        xmlSongMethods.CreateSong(drSong, xmlFile);
+        Response.Redirect("/XML/Index");
+    }
+}
+
+
+<form action="" method="post">
+    <input type="text" name="id" placeholder="Id" />
+    <br /><br />
+    <input type="text" name= "artist" placeholder="Artist" />
+    <br /><br />
+    <input type="text" name= "title" placeholder="Title" />
+    <br /><br/>
+    <input type="text" name= "year" placeholder="Year" />
+    <br /><br />
+    <input type="text" name= "Genre" placeholder="Genre" />
+    <br /><br />
+    <input type="text" name= "time" placeholder="Time" />
+    <br /><br />
+    <input type="submit" placeholder="Add" />
+</form>

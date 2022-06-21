@@ -24,12 +24,23 @@ namespace MusicPlaylist.Code.XML
             dtSongs.Columns.Add(dcYear);
             dtSongs.Columns.Add(dcGenre);
             dtSongs.Columns.Add(dcTime);
-
+            
             ds.Tables.Add(dtSongs);
 
             ds.ReadXml(Environment.CurrentDirectory + file);
-
             return ds;
+        }
+
+        public DataRow GetEmptyDataRow()
+        {
+            DataRow dr = ds.Tables["song"].NewRow();
+            return dr;
+        }
+
+        public void CreateSong(DataRow dr, string file)
+        {
+            ds.Tables["song"].Rows.Add(dr);
+            ds.WriteXml(Environment.CurrentDirectory + file);
         }
 
         public void DeleteSong(string id, string file)
@@ -52,4 +63,5 @@ namespace MusicPlaylist.Code.XML
             }
         }
     }
+
 }
