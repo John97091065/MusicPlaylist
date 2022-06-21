@@ -23,6 +23,7 @@
                 <th scope="col">Genre</th>
                 <th scope="col">Time</th>
                 <th scope="col">Delete</th>
+                <th scope="col">Change</th>
             </tr>
         </thread>
         <tbody>
@@ -36,6 +37,8 @@
                     <td>@drSong["genre"]</td>
                     <td>@drSong["time"]</td>
                     <td><a href ="/Xml/Delete?id=@drSong["id"]">Delete</a></td>
+                    <td><a href="/Xml/Wijzigen?id=@drSong["id"]">Change</a></td>
+
                 </tr>
             }
         </tbody>
